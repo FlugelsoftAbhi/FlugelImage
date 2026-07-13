@@ -1,0 +1,107 @@
+.social-container {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.social-header h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.platform-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.platform-card {
+  display: flex;
+  align-items: center;
+  padding: 24px;
+  gap: 24px;
+  transition: all 0.3s ease;
+}
+
+.platform-card:hover {
+  background: rgba(255, 255, 255, 0.05);
+  transform: translateX(4px);
+}
+
+.platform-card.connected {
+  border-color: rgba(16, 185, 129, 0.3);
+  background: rgba(16, 185, 129, 0.05);
+}
+
+.platform-icon {
+  width: 64px;
+  height: 64px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--panel-border);
+  transition: all 0.3s ease;
+}
+
+.platform-card.connected .platform-icon {
+  background: white;
+}
+
+.platform-info {
+  flex: 1;
+}
+
+.platform-info h3 {
+  font-size: 1.25rem;
+  margin-bottom: 4px;
+}
+
+.platform-info p {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.connect-btn {
+  min-width: 140px;
+}
+
+.text-success {
+  color: var(--success);
+}
+
+.text-accent {
+  color: var(--accent-color);
+}
+
+.loader-small {
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.mock-notice {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  background: rgba(99, 102, 241, 0.1);
+  border-color: rgba(99, 102, 241, 0.2);
+}
+
+.mock-notice p {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+}
+
+.mock-notice strong {
+  color: white;
+}

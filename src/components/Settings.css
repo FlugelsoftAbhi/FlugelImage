@@ -1,0 +1,96 @@
+.settings-container {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.settings-header h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.settings-content {
+  padding: 32px;
+}
+
+.api-form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.form-group label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.helper-text {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.guide-card {
+  padding: 32px;
+  background: rgba(99, 102, 241, 0.05);
+  border-color: rgba(99, 102, 241, 0.2);
+}
+
+.guide-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 24px;
+}
+
+.steps-list {
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.steps-list li {
+  font-size: 1.05rem;
+  line-height: 1.5;
+}
+
+.link {
+  color: var(--accent-color);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-weight: 500;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+.note {
+  padding: 16px;
+  background: rgba(0, 0, 0, 0.2);
+  border-left: 4px solid var(--accent-color);
+  border-radius: 4px 12px 12px 4px;
+}
+
+.note p {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+
+.note strong {
+  color: white;
+}
