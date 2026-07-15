@@ -1,32 +1,27 @@
-import { Buffer } from 'buffer';
+import { HfInference } from "@huggingface/inference";
+import { Buffer } from "buffer";
 
 export default async function handler(req, res) {
   if (req.method === 'POST') {
     const { prompt } = req.body;
     const API_KEY = process.env.HF_TOKEN;
-    // Using FLUX.1-schnell as it is faster and doesn't timeout as often
-    const MODEL_URL = "https://api-inference.huggingface.co/models/black-forest-labs/FLUX.1-schnell";
 
     try {
       if (!API_KEY) {
         throw new Error("HF_TOKEN is not configured on the server.");
       }
 
-      const response = await fetch(MODEL_URL, {
-        headers: {
-          "Authorization": `Bearer ${API_KEY}`,
-          "Content-Type": "application/json",
-        },
-        method: "POST",
-        body: JSON.stringify({ inputs: prompt }),
+      // Initialize the official Hugging Face SDK
+      const hf = new HfInference(API_KEY);
+
+      // Generate the image using FLUX.1-schnell
+      const blob = await hf.textToImage({
+        model: 'black-forest-labs/FLUX.1-schnell',
+        inputs: prompt
       });
 
-      if (!response.ok) {
-        const errorText = await response.text();
-        throw new Error(`Hugging Face API Error (${response.status}): ${errorText}`);
-      }
-
-      const arrayBuffer = await response.arrayBuffer();
+      // Convert the Blob to a base64 string
+      const arrayBuffer = await blob.arrayBuffer();
       const buffer = Buffer.from(arrayBuffer);
       const base64Image = buffer.toString('base64');
       
