@@ -13,18 +13,11 @@ export default function ImageGenerator({ apiKey, onRequireKey }) {
     e.preventDefault();
     if (!prompt.trim()) return;
 
-    if (!apiKey) {
-      onRequireKey();
-      return;
-    }
-
     setIsGenerating(true);
     setError(null);
 
     try {
-      // In a real implementation with valid Imagen access, this would call the API.
-      // We will simulate it if it fails or actually call it if a real key is provided.
-      const imageBase64 = await generateImage(prompt, apiKey);
+      const imageBase64 = await generateImage(prompt);
       setResultImage(`data:image/jpeg;base64,${imageBase64}`);
     } catch (err) {
       console.error(err);
