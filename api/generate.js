@@ -1,8 +1,11 @@
+import { Buffer } from 'buffer';
+
 export default async function handler(req, res) {
   if (req.method === 'POST') {
     const { prompt } = req.body;
     const API_KEY = process.env.HF_TOKEN;
-    const MODEL_URL = "https://api-inference.huggingface.co/models/stabilityai/stable-diffusion-xl-base-1.0";
+    // Using FLUX.1-schnell as it is faster and doesn't timeout as often
+    const MODEL_URL = "https://api-inference.huggingface.co/models/black-forest-labs/FLUX.1-schnell";
 
     try {
       if (!API_KEY) {
@@ -19,18 +22,17 @@ export default async function handler(req, res) {
       });
 
       if (!response.ok) {
-        throw new Error(`API Error: ${response.statusText}`);
+        const errorText = await response.text();
+        throw new Error(`Hugging Face API Error (${response.status}): ${errorText}`);
       }
 
       const arrayBuffer = await response.arrayBuffer();
       const buffer = Buffer.from(arrayBuffer);
-      
-      // Return raw base64 string
       const base64Image = buffer.toString('base64');
       
       res.status(200).json({ image: base64Image });
     } catch (error) {
-      console.error(error);
+      console.error("Backend Error:", error);
       res.status(500).json({ error: error.message || "Failed to generate image" });
     }
   } else {
